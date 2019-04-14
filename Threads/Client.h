@@ -1,6 +1,7 @@
 #pragma once
 #include "space.h"
 #include "Manager.h"
+#include "space.h"
 
 using namespace space;
 
