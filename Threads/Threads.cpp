@@ -8,8 +8,8 @@
 
 int main()
 {
-    Manager manager();
-    Client client();//TODO
+    Manager* manager = new Manager();
+    Client client(manager);//TODO
     
     for(int i = 0; i<1000000;i++){}
 }
