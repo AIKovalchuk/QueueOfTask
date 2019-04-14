@@ -6,7 +6,8 @@ using namespace space;
 class Task
 {
 public:
-    Task();
+	Task();
+    Task(int);
     ~Task();
 private:
     unsigned int id_;
