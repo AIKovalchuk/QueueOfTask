@@ -11,6 +11,8 @@ int main()
 {
     Manager* manager = new Manager();
     Client client(manager);//TODO
+    
+	// здесь надо запустить потоки
     std::thread thread(&Client::Run, std::ref(client));
     while (true) {
 
