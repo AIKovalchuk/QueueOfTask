@@ -11,7 +11,7 @@ int main()
     Manager* manager = new Manager();
     Client client(manager);//TODO
     
-
+	// здесь надо запустить потоки
 
     for(int i = 0; i<1000000;i++){}
 }
