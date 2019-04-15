@@ -7,10 +7,13 @@ class Task
 {
 public:
 	Task();
-    Task(int);
+    Task(int, LevelOfHard);
     ~Task();
+
+	int GetLevel();
+
 private:
-    unsigned int id_;
-    LevelOfHard level_;
+	unsigned int id_;
+	LevelOfHard level_;
 };
 

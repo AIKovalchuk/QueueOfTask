@@ -11,6 +11,8 @@ int main()
     Manager* manager = new Manager();
     Client client(manager);//TODO
     
+
+
     for(int i = 0; i<1000000;i++){}
 }
 

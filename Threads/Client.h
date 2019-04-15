@@ -1,5 +1,8 @@
 #pragma once
-#include "space.h"
+#ifndef CLIENT_H
+#define CLIENT_H
+
+#include "Task.h"
 #include "Manager.h"
 #include "space.h"
 
@@ -12,7 +15,16 @@ protected:
 public:
     Client(Manager* manager);
     ~Client();
+
+	void Run();
+
+	int GetRandomNumber(int, int);
+
+	
+
 private:
+	int nomer; //nomer zadachi
 
 };
 
+#endif

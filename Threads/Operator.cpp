@@ -21,7 +21,7 @@ Operator::~Operator()
 }
 
 void Operator::DoTask(Task&& task) {
-    std::this_thread::sleep_for(std::chrono::seconds(5 /*TODO put task.level */ / (int)experience_));
+    std::this_thread::sleep_for(std::chrono::seconds(5*task.GetLevel() / (int)experience_));
 }
 
 void Operator::Work() {
