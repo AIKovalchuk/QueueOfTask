@@ -5,13 +5,16 @@
 #include <iostream>
 #include "Manager.h"
 #include "Client.h"
+#include <thread>
 
 int main()
 {
     Manager* manager = new Manager();
     Client client(manager);//TODO
-    
+    std::thread thread(&Client::Run, std::ref(client));
+    while (true) {
 
+    }
 
     for(int i = 0; i<1000000;i++){}
 }
