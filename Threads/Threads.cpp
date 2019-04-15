@@ -11,12 +11,12 @@ int main()
 {
     Manager* manager = new Manager();
     Client client(manager);//TODO
-    
-	// здесь надо запустить потоки
     std::thread thread(&Client::Run, std::ref(client));
     while (true) {
 
     }
+    thread.join();
+	// здесь надо запустить потоки
 
     for(int i = 0; i<1000000;i++){}
 }
