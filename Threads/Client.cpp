@@ -13,11 +13,12 @@ Client::Client(Manager* manager)
 
 Client::~Client()
 {
+    thread->join();
 }
 
 void Client::Run()
 {
-    std::thread thread(&Manager::Run, std::ref(*manager_));
+    thread.reset(new std::thread(&Manager::Run, std::ref(*manager_)));
 	while (true)
 	{
 		int min = 1;
@@ -26,14 +27,13 @@ void Client::Run()
 		LevelOfHard slojnost = (LevelOfHard)(GetRandomNumber(min, max)); //рандомно генерит сложность
 		Task zadacha(nomer, slojnost);
 		manager_->PutToQueue(std::move(zadacha));
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	}
-    thread.join();
 }
 
 //const int RAND_MAX = 32767;
 
-int Client::GetRandomNumber(int min, int max)
+unsigned int Client::GetRandomNumber(int min, int max)
 {
 	/*
 	static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);

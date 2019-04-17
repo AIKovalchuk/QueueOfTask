@@ -17,7 +17,7 @@ public:
     ~Manager();
     void PutToQueue(Task&& task);
     void Run();
-    Task&& PopTask();
+    void PopTask(Operator* op);
     bool CheckQueue();
 private:
     std::queue<Task> queue_;
