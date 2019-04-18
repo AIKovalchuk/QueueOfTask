@@ -19,6 +19,7 @@ public:
     void Run();
     Task&& PopTask();
     bool CheckQueue();
+
 private:
     std::queue<Task> queue_;
     std::vector<std::thread> thread_;

@@ -26,7 +26,7 @@ void Client::Run()
 		LevelOfHard slojnost = (LevelOfHard)(GetRandomNumber(min, max)); //рандомно генерит сложность
 		Task zadacha(nomer, slojnost);
 		manager_->PutToQueue(std::move(zadacha));
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(100)); 
 	}
     thread.join();
 }
