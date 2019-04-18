@@ -13,6 +13,7 @@ class Client
 {
 protected:
     Manager* manager_;
+
 public:
     Client(Manager* manager);
     ~Client();

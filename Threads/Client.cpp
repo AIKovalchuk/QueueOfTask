@@ -19,6 +19,7 @@ Client::~Client()
 void Client::Run()
 {
     thread.reset(new std::thread(&Manager::Run, std::ref(*manager_)));
+
 	while (true)
 	{
 		int min = 1;

@@ -12,13 +12,15 @@ int main()
     Manager* manager = new Manager();
     Client client(manager);//TODO
     std::thread thread(&Client::Run, std::ref(client));
-    while (true) {
+    
+	/*
+	while (true) {
 
     }
+	*/
     thread.join();
-	// здесь надо запустить потоки
-
-    for(int i = 0; i<1000000;i++){}
+	
+	
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
