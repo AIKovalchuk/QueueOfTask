@@ -5,6 +5,7 @@
 #include "Task.h"
 #include "Manager.h"
 #include "space.h"
+#include <thread>
 
 using namespace space;
 
@@ -18,13 +19,13 @@ public:
 
 	void Run();
 
-	int GetRandomNumber(int, int);
+	unsigned int GetRandomNumber(int, int);
 
 	
 
 private:
-	int nomer; //nomer zadachi
-
+	unsigned int nomer; //nomer zadachi
+    std::shared_ptr<std::thread> thread;
 };
 
 #endif

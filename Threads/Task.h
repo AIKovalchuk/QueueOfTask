@@ -11,6 +11,7 @@ public:
     ~Task();
 
 	int GetLevel();
+    unsigned int GetId();
 
 private:
 	unsigned int id_;

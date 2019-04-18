@@ -2,12 +2,13 @@
 #include "Manager.h"
 #include "Operator.h"
 #include "Task.h"
+#include <iostream>
 
 
 
 Manager::Manager()
 {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 1; i++) {
         m_operator[i] = std::move(Operator(this));
         current_operator++;
     }
@@ -27,13 +28,12 @@ Manager::~Manager()
 
 
 void Manager::PutToQueue(Task&& task) {
-    mutex.lock();
+    //std::lock_guard<std::mutex> locker(mutex);
     queue_.push(std::move(task));
-    mutex.unlock();
 }
 
 void Manager::Run() {
-    for (size_t i = 0; i<5; i++)
+    for (size_t i = 0; i < m_operator.size(); i++)
     {
         std::thread thread(&Operator::Work,std::ref(m_operator[i]));
         thread_.push_back(std::move(thread));
@@ -47,30 +47,27 @@ void Manager::Run() {
             current_operator++;
         }
 
-        if (queue_.size() <= thread_.size() && thread_.size() > 1) {
+        if (queue_.size()+2 <= thread_.size() && thread_.size() > 1) {
+            m_operator[current_operator - 1].Off();
             thread_[current_operator-1].join();
-            delete &m_operator[current_operator - 1];
+            m_operator[current_operator - 1].destroy();
             m_operator.erase(current_operator - 1);
+            current_operator--;
         }
     }
 }
 
-Task&& Manager::PopTask() {
-    mutex.lock();
-    if (queue_.size() != 0)
-    {
+void Manager::PopTask(Operator* op) {
+    std::lock_guard<std::mutex> locker(mutex);
+    std::cout << " Pop task. Size: " << queue_.size() << std::endl;
+    if(!queue_.empty()){
         auto task = queue_.front();
+        op->GetTask(std::move(task));
         queue_.pop();
-        return std::move(task);
     }
-    else
-    {
-        throw std::logic_error("No tasks in the queue!");
-    }
-    
-    mutex.unlock();
 }
 
 bool Manager::CheckQueue() {
+    std::lock_guard<std::mutex> locker(mutex);
     return !queue_.empty();
 }
