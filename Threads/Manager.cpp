@@ -50,7 +50,7 @@ void Manager::Run() {
         if (queue_.size()+2 <= thread_.size() && thread_.size() > 1) {
             m_operator[current_operator - 1].Off();
             thread_[current_operator-1].join();
-            m_operator[current_operator - 1].destroy();
+            //m_operator[current_operator - 1].destroy();
             m_operator.erase(current_operator - 1);
             current_operator--;
         }
