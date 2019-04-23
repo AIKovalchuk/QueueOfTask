@@ -9,7 +9,8 @@
 Manager::Manager()
 {
     for (int i = 0; i < 1; i++) {
-        m_operator[i] = std::move(Operator(this));
+        m_operator[i] = std::move(Operator(this, count));
+        count++;
         current_operator++;
     }
 }
@@ -41,7 +42,8 @@ void Manager::Run() {
     while (true)
     {
         if (queue_.size() > 2 * thread_.size() && thread_.size() < MAX_OF_OPERATOR) {
-            m_operator[current_operator] = std::move(Operator(this));
+            m_operator[current_operator] = std::move(Operator(this, count));
+            count++;
             std::thread thread(&Operator::Work, std::ref(m_operator[current_operator]));
             thread_.push_back(std::move(thread));
             current_operator++;

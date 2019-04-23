@@ -12,16 +12,17 @@ protected:
     Manager* manager_;
 public:
     Operator();
-    Operator(Manager* manager);
+    Operator(Manager* manager, unsigned int);
     virtual ~Operator();
     void DoTask(Task && task);
     void Work();
-    void PrintTask(unsigned int i);
+    void PrintTask(unsigned int i, unsigned int time);
     void GetTask(Task&& task);
     void Off();
     void destroy();
 private:
     Experience experience_;
     bool work;
+    unsigned int id_;
 };
 

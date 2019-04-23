@@ -27,5 +27,6 @@ private:
     const unsigned int MAX_OF_OPERATOR = 20;
     unsigned int current_operator = 0;
     std::mutex mutex;
+    unsigned int count = 1;
 };
 
