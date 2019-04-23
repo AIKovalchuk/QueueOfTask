@@ -42,7 +42,7 @@ void Operator::Work() {
 void Operator::PrintTask(unsigned int i, unsigned int time) {
     std::mutex mutex_;
     std::lock_guard<std::mutex> locker(mutex_);
-    std::cout << "Task Comlete. #" << i << ", spending time: " << time << ", Operator id: " << id_ << std::endl;
+    std::cout << "Task Complete. #" << i << ", spending time: " << time << ", Operator id: " << id_ << std::endl;
 }
 
 void Operator::GetTask(Task && task)
