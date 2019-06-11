@@ -14,7 +14,7 @@ public:
     unsigned int GetId();
 
 private:
-	unsigned int id_;
-	LevelOfHard level_;
+	unsigned int id_;       //номер задачи
+	LevelOfHard level_;     //сложность
 };
 

@@ -23,18 +23,23 @@ Operator::~Operator()
 {
 }
 
-void Operator::DoTask(Task&& task) {
+int Operator::DoTask(Task&& task)
+//Иметация выполнение задачи
+{
     unsigned int time = 5 * task.GetLevel() / (int)experience_;
     std::this_thread::sleep_for(std::chrono::seconds(time));
     PrintTask(task.GetId(), time);
+    return time;
 }
 
 void Operator::Work() {
     while (work)
     {
+        //если очередь не пуста, прочит дать задачу.
         if (manager_->CheckQueue()) {
             manager_->PopTask(this);
         }
+        //немного замедлить, а то нагрузка большая
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
@@ -42,12 +47,12 @@ void Operator::Work() {
 void Operator::PrintTask(unsigned int i, unsigned int time) {
     std::mutex mutex_;
     std::lock_guard<std::mutex> locker(mutex_);
-    std::cout << "Task Complete. #" << i << ", spending time: " << time << ", Operator id: " << id_ << std::endl;
+    std::cout << "====Task Complete. #" << i << ", spending time: " << time << ", Operator id: " << id_<< "===" << std::endl;
 }
 
-void Operator::GetTask(Task && task)
+int Operator::GetTask(Task && task)
 {
-    DoTask(std::move(task));
+    return DoTask(std::move(task));
 }
 
 void Operator::Off()

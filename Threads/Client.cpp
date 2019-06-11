@@ -19,7 +19,7 @@ Client::~Client()
 void Client::Run()
 {
     thread.reset(new std::thread(&Manager::Run, std::ref(*manager_)));
-
+    //создает задачу ра в 0.9-3 секунды с рандомной сложностью
 	while (true)
 	{
 		int min = 1;

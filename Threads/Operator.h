@@ -14,15 +14,15 @@ public:
     Operator();
     Operator(Manager* manager, unsigned int);
     virtual ~Operator();
-    void DoTask(Task && task);
+    int DoTask(Task && task);
     void Work();
     void PrintTask(unsigned int i, unsigned int time);
-    void GetTask(Task&& task);
+    int GetTask(Task&& task);
     void Off();
     void destroy();
 private:
-    Experience experience_;
-    bool work;
-    unsigned int id_;
+    Experience experience_;     //Опыт работы. Только для вычесления времени выполнения задачи
+    bool work;                  //Переменная служит, чтобы "выключать" оператора
+    unsigned int id_;           //айди оператора
 };
 
